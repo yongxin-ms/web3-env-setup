@@ -4,25 +4,38 @@ A tool can create a web3 developing environment for you.
 
 
 
-### Quick start
+### Requirements
 
-Run these commands in your project folder with PowerShell terminal(version 5.1 or later):
+- Docker Desktop
+- vs code with dev container extension
+- PowerShell terminal(version 5.1 or later)
+
+
 
 ```
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+
+
+### Quick start
+
+Run this command in your project folder with PowerShell terminal
+
+```
 irm https://github.com/yongxin-ms/web3-env-setup/releases/download/latest/setup.ps1 | iex
 ```
 
 
 
-### Requirements
+### Example project
 
-- Docker Desktop
-- vs code with dev container extension
+```
+irm https://github.com/yongxin-ms/web3-env-setup/releases/download/latest/setup_and_unbox.ps1 | iex
+```
 
 
 
 Enjoy your web3 developing!
-
 
 
