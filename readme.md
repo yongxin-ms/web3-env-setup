@@ -10,7 +10,7 @@ Run commands in your project folder
 
 ```
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-irm get.scoop.sh | iex
+irm https://github.com/yongxin-ms/web3-env-setup/releases/download/latest/setup.ps1 | iex
 ```
 
 

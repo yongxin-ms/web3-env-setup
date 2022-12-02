@@ -64,14 +64,14 @@ function Install-Environment {
     Write-InstallInfo "Components: nodejs truffle ganache lite-server"
 
     Write-InstallInfo "Openning vs code"
-	cmd /c code --install-extension ms-vscode-remote.remote-containers
-	cmd /c code --enable-proposed-api 
+    # cmd /c code --install-extension ms-vscode-remote.remote-containers
+    # cmd /c code --enable-proposed-api
     cmd /c code .
 
     Write-InstallInfo "All done"
 }
 
 $DEV_CONTAINER_DIR = ".\.devcontainer"
-$CONFIG_JSON_REPO = "https://github.com/yongxin-ms/empty-dapp-env/releases/download/v1.0.3/devcontainer.json"
-#$CONFIG_JSON_REPO = "https://github.com/yongxin-ms/empty-dapp-env/releases/download/v1.0.3/devcontainer_unbox.json"
+$CONFIG_JSON_REPO = "https://github.com/yongxin-ms/web3-env-setup/releases/download/latest/devcontainer.json"
+#$CONFIG_JSON_REPO = "https://github.com/yongxin-ms/web3-env-setup/releases/download/latest/devcontainer_unbox.json"
 Install-Environment
