@@ -4,9 +4,9 @@ A tool can create a web3 developing environment for you.
 
 
 
-### Steps
+### Quick start
 
-Run commands in your project folder
+Run these commands in your project folder with PowerShell terminal(version 5.1 or later):
 
 ```
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
