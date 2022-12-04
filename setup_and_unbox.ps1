@@ -64,9 +64,16 @@ function Install-Environment {
     Write-InstallInfo "Components: nodejs truffle ganache lite-server"
 
     Write-InstallInfo "Openning vs code"
-    # cmd /c code --install-extension ms-vscode-remote.remote-containers
-    # cmd /c code --enable-proposed-api
-    cmd /c code .
+    $enc = [System.Text.Encoding]::UTF8
+
+    $project_path = (Get-Location).Path
+    $project_name = $project_path.Split("\")[-1]
+    $hex_path = ($enc.GetBytes($project_path) | ForEach-Object ToString X2) -join ''
+
+    $cmd = "code --folder-uri=vscode-remote://dev-container%2b" + `
+        $hex_path + "/workspaces/" + $project_name
+    # Write-InstallInfo $cmd
+    cmd /c $cmd
 
     Write-InstallInfo "All done"
 }
