@@ -56,7 +56,6 @@ function Install-Environment {
     $configJsonfile = "$DEV_CONTAINER_DIR\devcontainer.json"
     Write-InstallInfo "Downloading devcontainer.json"
     $downloader.downloadFile($CONFIG_JSON_REPO, $configJsonfile)
-	Start-Sleep -Milliseconds 500
 
     # Write-InstallInfo "Starting Docker Desktop"
     # Start-Process -FilePath "C:\Program Files\Docker\Docker\Docker Desktop.exe"
