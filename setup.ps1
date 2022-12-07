@@ -1,3 +1,6 @@
+#Requires -Version 5.1
+Write-Output "PowerShell: $($PSVersionTable.PSVersion)"
+
 function Write-InstallInfo {
     param(
         [Parameter(Mandatory = $True, Position = 0)]
