@@ -21,34 +21,6 @@ function Write-InstallInfo {
     $host.UI.RawUI.ForegroundColor = $backup
 }
 
-function Get-Downloader {
-    $downloadSession = New-Object System.Net.WebClient
-
-    # Set proxy to null if NoProxy is specificed
-    if ($NoProxy) {
-        $downloadSession.Proxy = $null
-    }
-    elseif ($Proxy) {
-        # Prepend protocol if not provided
-        if (!$Proxy.IsAbsoluteUri) {
-            $Proxy = New-Object System.Uri("http://" + $Proxy.OriginalString)
-        }
-
-        $Proxy = New-Object System.Net.WebProxy($Proxy)
-
-        if ($null -ne $ProxyCredential) {
-            $Proxy.Credentials = $ProxyCredential.GetNetworkCredential()
-        }
-        elseif ($ProxyUseDefaultCredentials) {
-            $Proxy.UseDefaultCredentials = $true
-        }
-
-        $downloadSession.Proxy = $Proxy
-    }
-
-    return $downloadSession
-}
-
 function Install-Environment {
     Write-InstallInfo "Installing web3 environment..."
     if (!(Test-Path $DEV_CONTAINER_DIR)) {
@@ -56,19 +28,30 @@ function Install-Environment {
         Write-InstallInfo "$DEV_CONTAINER_DIR has been created"
     }
 
-    $downloader = Get-Downloader
     $configJsonfile = "$DEV_CONTAINER_DIR\devcontainer.json"
     Write-InstallInfo "Downloading devcontainer.json"
-	
-	[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-	Invoke-WebRequest -Uri $CONFIG_JSON_REPO -OutFile $configJsonfile
-    # $downloader.downloadFile($CONFIG_JSON_REPO, $configJsonfile)
+
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    Invoke-WebRequest -Uri $CONFIG_JSON_REPO -OutFile $configJsonfile
 
     # Write-InstallInfo "Starting Docker Desktop"
     # Start-Process -FilePath "C:\Program Files\Docker\Docker\Docker Desktop.exe"
 
     Write-InstallInfo "From mcr.microsoft.com/vscode/devcontainers/base"
     Write-InstallInfo "Components: nodejs truffle ganache lite-server"
+
+    $total_extensions = cmd /c code --list-extensions
+    $remote_extension_exist = ""
+    foreach ($item in $total_extensions) {
+        if ($item -eq "ms-vscode-remote.remote-containers") {
+            $remote_extension_exist = $item
+            break
+        }
+    }
+
+    if ($remote_extension_exist -eq "") {
+        cmd /c code --install-extension ms-vscode-remote.remote-containers
+    }
 
     Write-InstallInfo "Openning vs code"
     $enc = [System.Text.Encoding]::UTF8
