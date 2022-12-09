@@ -1,3 +1,5 @@
+Set-StrictMode -Off
+
 function Write-InstallInfo {
     param(
         [Parameter(Mandatory = $True, Position = 0)]
