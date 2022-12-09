@@ -1,3 +1,5 @@
+#Requires -Version 5.1
+Write-Output "PowerShell: $($PSVersionTable.PSVersion)"
 Set-StrictMode -Off
 
 function Write-InstallInfo {
