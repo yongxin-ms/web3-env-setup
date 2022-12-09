@@ -59,7 +59,10 @@ function Install-Environment {
     $downloader = Get-Downloader
     $configJsonfile = "$DEV_CONTAINER_DIR\devcontainer.json"
     Write-InstallInfo "Downloading devcontainer.json"
-    $downloader.downloadFile($CONFIG_JSON_REPO, $configJsonfile)
+	
+	[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+	Invoke-WebRequest -Uri $CONFIG_JSON_REPO -OutFile $configJsonfile
+    # $downloader.downloadFile($CONFIG_JSON_REPO, $configJsonfile)
 
     # Write-InstallInfo "Starting Docker Desktop"
     # Start-Process -FilePath "C:\Program Files\Docker\Docker\Docker Desktop.exe"
