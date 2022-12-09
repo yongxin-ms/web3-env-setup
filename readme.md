@@ -7,7 +7,7 @@ A tool can create a web3 developing environment for you.
 ### Requirements
 
 - Docker Desktop
-- vs code with dev container extension
+- vs code
 - PowerShell terminal(version 5.1 or later)
 
 
@@ -37,5 +37,4 @@ irm https://github.com/yongxin-ms/web3-env-setup/releases/download/latest/setup_
 
 
 Enjoy your web3 developing!
-
 
